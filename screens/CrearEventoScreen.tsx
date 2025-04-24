@@ -1,13 +1,39 @@
+// 📁 screens/CrearEventoScreen.tsx
 import React, { useState } from 'react';
-import { View, Text, TextInput, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, Text, TextInput, StyleSheet, TouchableOpacity, Alert } from 'react-native';
+import { useEventos } from '../context/EventosContext';
+import uuid from 'react-native-uuid';
 
 export default function CrearEventoScreen(): JSX.Element {
   const [nombre, setNombre] = useState('');
   const [lugar, setLugar] = useState('');
+  const [descripcion, setDescripcion] = useState('');
+  const { agregarEvento } = useEventos();
 
   const crearEvento = (): void => {
-    console.log(`Evento creado: ${nombre} en ${lugar}`);
-    // lógica para guardar el evento o llamar API
+    if (nombre.trim() && lugar.trim()) {
+      agregarEvento({ id: uuid.v4() as string, nombre, lugar, descripcion });
+
+      Alert.alert(
+        'Evento guardado',
+        `El evento "${nombre}" ha sido guardado correctamente.`,
+        [
+          { text: 'Aceptar', onPress: () => console.log('Evento guardado') },
+        ],
+        { cancelable: false }
+      );
+
+      setNombre('');
+      setLugar('');
+      setDescripcion('');
+    } else {
+      Alert.alert(
+        'Error',
+        'Por favor, completa todos los campos requeridos.',
+        [{ text: 'Aceptar', onPress: () => console.log('Error al guardar evento') }],
+        { cancelable: false }
+      );
+    }
   };
 
   return (
@@ -24,6 +50,14 @@ export default function CrearEventoScreen(): JSX.Element {
         style={styles.input}
         value={lugar}
         onChangeText={setLugar}
+      />
+      <TextInput
+        placeholder="Descripción (opcional)"
+        style={styles.input}
+        multiline
+        numberOfLines={4}
+        value={descripcion}
+        onChangeText={setDescripcion}
       />
       <TouchableOpacity style={styles.button} onPress={crearEvento}>
         <Text style={styles.buttonText}>Guardar Evento</Text>

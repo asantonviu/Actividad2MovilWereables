@@ -14,7 +14,7 @@ export default function HomeStack(): JSX.Element {
   return (
     <Stack.Navigator>
       <Stack.Screen name="Inicio" component={HomeScreen} />
-      <Stack.Screen name="DetalleEvento" component={DetalleEventoScreen} />
+      <Stack.Screen name="DetalleEvento" component={DetalleEventoScreen} options={{ title: 'Detalle Evento'}} />
     </Stack.Navigator>
   );
 }

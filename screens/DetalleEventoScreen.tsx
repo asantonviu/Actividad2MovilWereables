@@ -1,22 +1,40 @@
+// 📁 screens/DetalleEventoScreen.tsx
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
-import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import { HomeStackParamList } from '../navigation/HomeStack';
+import { useRoute } from '@react-navigation/native';
+import { useEventos } from '../context/EventosContext';
+import type { RouteProp } from '@react-navigation/native';
+import type { RootStackParamList } from '../navigation/types';
 
-type Props = NativeStackScreenProps<HomeStackParamList, 'DetalleEvento'>;
+type DetalleEventoRouteProp = RouteProp<RootStackParamList, 'DetalleEvento'>;
 
-export default function DetalleEventoScreen({ route }: Props): JSX.Element {
-  const { evento } = route.params;
+export default function DetalleEventoScreen(): JSX.Element {
+  const { eventoId } = useRoute<DetalleEventoRouteProp>().params;
+  const { eventos } = useEventos();
+  const evento = eventos.find((e) => e.id === eventoId);
+
+  if (!evento) {
+    return (
+      <View style={styles.container}>
+        <Text style={styles.title}>Evento no encontrado</Text>
+      </View>
+    );
+  }
+
   return (
     <View style={styles.container}>
       <Text style={styles.title}>{evento.nombre}</Text>
-      <Text style={styles.subtitle}>Lugar: {evento.lugar}</Text>
+      <Text style={styles.subtitulo}>Lugar: {evento.lugar}</Text>
+      {evento.descripcion ? (
+        <Text style={styles.descripcion}>Descripción: {evento.descripcion}</Text>
+      ) : null}
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  container: { flex: 1, padding: 20, justifyContent: 'center' },
-  title: { fontSize: 24, fontWeight: 'bold' },
-  subtitle: { fontSize: 18, marginTop: 10 },
+  container: { flex: 1, padding: 20 },
+  title: { fontSize: 24, fontWeight: 'bold', marginBottom: 20 },
+  subtitulo: { fontSize: 18, marginBottom: 10 },
+  descripcion: { fontSize: 16, color: '#555' },
 });
