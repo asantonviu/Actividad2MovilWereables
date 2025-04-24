@@ -1,6 +1,6 @@
 // 📁 screens/DetalleEventoScreen.tsx
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, Image } from 'react-native';
 import { useRoute } from '@react-navigation/native';
 import { useEventos } from '../context/EventosContext';
 import type { RouteProp } from '@react-navigation/native';
@@ -25,9 +25,12 @@ export default function DetalleEventoScreen(): JSX.Element {
     <View style={styles.container}>
       <Text style={styles.title}>{evento.nombre}</Text>
       <Text style={styles.subtitulo}>Lugar: {evento.lugar}</Text>
-      {evento.descripcion ? (
+      {evento.descripcion?.trim() ? (
         <Text style={styles.descripcion}>Descripción: {evento.descripcion}</Text>
       ) : null}
+      {evento.imagenUri && (
+        <Image source={{ uri: evento.imagenUri }} style={styles.image} />
+      )}
     </View>
   );
 }
@@ -36,5 +39,7 @@ const styles = StyleSheet.create({
   container: { flex: 1, padding: 20 },
   title: { fontSize: 24, fontWeight: 'bold', marginBottom: 20 },
   subtitulo: { fontSize: 18, marginBottom: 10 },
+  image: { width: '100%', height: 250, borderRadius: 10, marginVertical: 15 },
   descripcion: { fontSize: 16, color: '#555' },
+
 });

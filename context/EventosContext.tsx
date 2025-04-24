@@ -6,6 +6,7 @@ export type Evento = {
     nombre: string;
     lugar: string;
     descripcion?: string;
+    imagenUri?: string | null;
 };
 
 type EventosContextType = {
