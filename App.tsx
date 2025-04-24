@@ -1,20 +1,23 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import React from 'react';
+import { NavigationContainer } from '@react-navigation/native';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import HomeStack from './navigation/HomeStack';
+import CreateEventScreen from './screens/CrearEventoScreen';
 
-export default function App() {
+export type RootTabParamList = {
+  Inicio: undefined;
+  'Crear Evento': undefined;
+};
+
+const Tab = createBottomTabNavigator<RootTabParamList>();
+
+export default function App(): JSX.Element {
   return (
-    <View style={styles.container}>
-      <Text>Te quiero y te amo mi amorcito!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <NavigationContainer>
+      <Tab.Navigator screenOptions={{ headerShown: false }}>
+        <Tab.Screen name="Inicio" component={HomeStack} />
+        <Tab.Screen name="Crear Evento" component={CreateEventScreen} />
+      </Tab.Navigator>
+    </NavigationContainer>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
