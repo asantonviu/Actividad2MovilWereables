@@ -1,5 +1,5 @@
 import React, { JSX } from 'react';
-import { View, SafeAreaView, Text, StyleSheet, Image } from 'react-native';
+import { View, ScrollView, Text, StyleSheet, Image } from 'react-native';
 import { useRoute } from '@react-navigation/native';
 import { useEventos } from '../context/EventosContext';
 import type { RouteProp } from '@react-navigation/native';
@@ -30,7 +30,7 @@ export default function DetalleEventoScreen(): JSX.Element {
   }
 
   return (
-    <SafeAreaView style={styles.container}>
+    <ScrollView style={styles.container}>
       <Text style={styles.title}>{evento.nombre}</Text>
       <Text style={styles.subtitulo}>Lugar: {evento.lugar}</Text>
       {evento.descripcion?.trim() ? (
@@ -39,7 +39,7 @@ export default function DetalleEventoScreen(): JSX.Element {
       {evento.imagenUri && (
         <Image source={{ uri: evento.imagenUri }} style={styles.image} />
       )}
-    </SafeAreaView>
+    </ScrollView>
   );
 }
 
