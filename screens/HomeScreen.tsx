@@ -1,6 +1,6 @@
 // 📁 screens/HomeScreen.tsx
 import React from 'react';
-import { View, Text, StyleSheet, FlatList, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, FlatList, TouchableOpacity, SafeAreaView } from 'react-native';
 import { useEventos } from '../context/EventosContext';
 import { useNavigation } from '@react-navigation/native';
 import type { NativeStackNavigationProp } from '@react-navigation/native-stack';
@@ -11,7 +11,7 @@ export default function HomeScreen(): JSX.Element {
     const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList, 'Home'>>();
 
     return (
-        <View style={styles.container}>
+        <SafeAreaView style={styles.container}>
             <Text style={styles.title}>Eventos en tu ciudad</Text>
             {eventos.length === 0 ? (
                 <Text style={styles.vacio}>No hay eventos registrados aún.</Text>
@@ -30,7 +30,7 @@ export default function HomeScreen(): JSX.Element {
                     )}
                 />
             )}
-        </View>
+        </SafeAreaView>
     );
 }
 

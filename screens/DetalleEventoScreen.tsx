@@ -1,6 +1,6 @@
 // 📁 screens/DetalleEventoScreen.tsx
 import React from 'react';
-import { View, Text, StyleSheet, Image } from 'react-native';
+import { View, SafeAreaView, Text, StyleSheet, Image } from 'react-native';
 import { useRoute } from '@react-navigation/native';
 import { useEventos } from '../context/EventosContext';
 import type { RouteProp } from '@react-navigation/native';
@@ -22,7 +22,7 @@ export default function DetalleEventoScreen(): JSX.Element {
   }
 
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       <Text style={styles.title}>{evento.nombre}</Text>
       <Text style={styles.subtitulo}>Lugar: {evento.lugar}</Text>
       {evento.descripcion?.trim() ? (
@@ -31,7 +31,7 @@ export default function DetalleEventoScreen(): JSX.Element {
       {evento.imagenUri && (
         <Image source={{ uri: evento.imagenUri }} style={styles.image} />
       )}
-    </View>
+    </SafeAreaView>
   );
 }
 
