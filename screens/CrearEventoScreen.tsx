@@ -1,10 +1,15 @@
-// 📁 screens/CrearEventoScreen.tsx
-import React, { useState } from 'react';
+import React, { JSX, useState } from 'react';
 import { View, Text, TextInput, StyleSheet, TouchableOpacity, Alert, Image } from 'react-native';
 import * as ImagePicker from 'expo-image-picker';
 import { useEventos } from '../context/EventosContext';
 import uuid from 'react-native-uuid';
 
+/**
+ *  Pantalla para crear un nuevo evento.
+ * Permite al usuario ingresar el nombre, lugar y descripción del evento,
+ * así como seleccionar una imagen de la galería.
+ * @returns {JSX.Element} Componente de pantalla para crear un evento.
+ */
 export default function CrearEventoScreen(): JSX.Element {
   const [nombre, setNombre] = useState('');
   const [lugar, setLugar] = useState('');
@@ -12,6 +17,10 @@ export default function CrearEventoScreen(): JSX.Element {
   const [imagenUri, setImagenUri] = useState<string | null>(null);
   const { agregarEvento } = useEventos();
 
+  /**
+   *  Función para seleccionar una imagen de la galería.
+   * Solicita permisos y actualiza el estado con la URI de la imagen seleccionada.
+   */
   const seleccionarImagen = async () => {
     const permiso = await ImagePicker.requestMediaLibraryPermissionsAsync();
     if (!permiso.granted) {
@@ -19,6 +28,9 @@ export default function CrearEventoScreen(): JSX.Element {
       return;
     }
 
+    /**
+     *  Lanza el selector de imágenes de la galería.
+     */
     const resultado = await ImagePicker.launchImageLibraryAsync({
       mediaTypes: ImagePicker.MediaTypeOptions.Images,
       allowsEditing: true,
@@ -31,6 +43,9 @@ export default function CrearEventoScreen(): JSX.Element {
     }
   }
 
+  /**
+   * *  Función para crear un nuevo evento.
+   */
   const crearEvento = (): void => {
     if (nombre.trim() && lugar.trim()) {
       agregarEvento({ id: uuid.v4() as string, nombre, lugar, descripcion, imagenUri });
@@ -96,6 +111,9 @@ export default function CrearEventoScreen(): JSX.Element {
   );
 }
 
+/**
+ *  Estilos para el componente CrearEventoScreen.
+ */
 const styles = StyleSheet.create({
   container: { flex: 1, padding: 20 },
   title: { fontSize: 22, fontWeight: 'bold', marginBottom: 20 },

@@ -1,0 +1,22 @@
+{
+    "out": "./docs",
+    "exclude": [
+        "**/node_modules/**",
+        "**/android/**",
+        "**/ios/**",
+        "**/web/**",
+        "**/expo/**",
+        "**/__tests__/**",
+        "**/*.test.ts",
+        "**/*.test.tsx"
+    ],
+    "includeVersion": false,
+    "excludePrivate": true,
+    "excludeProtected": true,
+    "entryPoints": [
+        "./App.tsx",
+        "./navigation/**/*.tsx",
+        "./screens/**/*.tsx",
+        "./context/**/*.tsx",
+    ]
+}

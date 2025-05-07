@@ -1,11 +1,15 @@
-// 📁 screens/HomeScreen.tsx
-import React from 'react';
+import React, { JSX } from 'react';
 import { View, Text, StyleSheet, FlatList, TouchableOpacity, SafeAreaView } from 'react-native';
 import { useEventos } from '../context/EventosContext';
 import { useNavigation } from '@react-navigation/native';
 import type { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import type { RootStackParamList } from '../navigation/types';
 
+/**
+ *  Pantalla principal de la aplicación que muestra una lista de eventos.
+ * Permite navegar a la pantalla de detalles del evento seleccionado.
+ * @returns {JSX.Element} Componente de pantalla principal.
+ */
 export default function HomeScreen(): JSX.Element {
     const { eventos } = useEventos();
     const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList, 'Home'>>();
@@ -34,6 +38,9 @@ export default function HomeScreen(): JSX.Element {
     );
 }
 
+/**
+ *  Estilos para la pantalla principal.
+ */
 const styles = StyleSheet.create({
     container: { flex: 1, padding: 20 },
     title: { fontSize: 24, fontWeight: 'bold', marginBottom: 20 },

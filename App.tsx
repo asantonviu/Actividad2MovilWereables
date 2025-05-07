@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { JSX } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Ionicons from 'react-native-vector-icons/Ionicons';
@@ -6,13 +6,26 @@ import HomeStack from './navigation/HomeStack';
 import { EventosProvider } from './context/EventosContext';
 import CreateEventStack from './navigation/CreateEventStack';
 
+/**
+ * @typedef {Object} RootTabParamList
+ * @property {undefined} Inicio - Pantalla de inicio.
+ * @property {undefined} 'Crear Evento' - Pantalla para crear un evento.
+ */
 export type RootTabParamList = {
   Inicio: undefined;
   'Crear Evento': undefined;
 };
 
+/**
+ *  Tab Navigator para la navegación de la aplicación.
+ */
 const Tab = createBottomTabNavigator<RootTabParamList>();
 
+/**
+ *  Componente principal de la aplicación.
+ * Configura la navegación y el contexto de eventos.
+ * @returns {JSX.Element} Componente principal de la aplicación.
+ */
 export default function App(): JSX.Element {
   return (
     <EventosProvider>
