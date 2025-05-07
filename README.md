@@ -33,5 +33,11 @@ El proyecto emplea los componentes requeridos por el enunciado de la actividad. 
 - **ScrollView**: Se utiliza para permitir el desplazamiento del contenido de la aplicación. Se utiliza en la pantalla de detalle de evento.
 - **FlatList**: Se utiliza para mostrar una lista de elementos que se pueden desplazar. Se utiliza para mostrar la lista de eventos en la pantalla de inicio.
 
+Encontrarás mas información sobre la aplicación en la docummentación de la misma, en el directorio **docs**.
 
 #### Imagenes
+![Pantalla Principal Vacía](https://github.com/user-attachments/assets/ca0b8447-f059-4ce8-bfa5-e514d8cb4980)
+![Pantalla de Creación de Eventos](https://github.com/user-attachments/assets/e147eae7-87af-44bc-9eb6-939232d8651f)
+![Alerta de evento creado)](https://github.com/user-attachments/assets/07468575-6a94-4701-b467-7ed10bebd4c0)
+![Pantalla Principal con evento](https://github.com/user-attachments/assets/24a7a188-12a7-4155-8d4c-0a81ee0f12f9)
+![Pantalla de Detalle de Evento](https://github.com/user-attachments/assets/a593ffe5-4fcd-44a7-886c-1af67308e029)
